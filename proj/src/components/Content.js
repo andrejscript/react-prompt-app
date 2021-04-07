@@ -5,17 +5,25 @@ import classes from './Content.module.css';
 export default class Content extends Component {
   state = {
     cars: [
-      { name: 'Mazda', year: 2014 },
-      { name: 'Reno', year: 2016 },
-      { name: 'BMW', year: 2019 },
+      { name: 'Mazda', year: 2014, id: 1 },
+      { name: 'Reno', year: 2016, id: 2 },
+      { name: 'BMW', year: 2019, id: 3 },
     ],
-    pageTitle: 'Main page title'
+    pageTitle: 'Main page title',
+    showCars: true
   };
 
 
-  changeTitleHandler = (newTitle) => {
+  toggleCarsHandler = () => {
     this.setState({
-      pageTitle: newTitle
+      showCars: !this.state.showCars
+    })
+  }
+
+  changeTitleHandler = (title) => {
+    console.log(1);
+    this.setState({
+      pageTitle: title
     })
   }
 
@@ -26,21 +34,27 @@ export default class Content extends Component {
   }
 
   render() {
-    const { cars } = this.state;
+
 
     return (
       <div className={classes.Content}>
         <h1>{this.state.pageTitle}</h1>
+        <button onClick={this.toggleCarsHandler.bind(this)}>Show list</button>
+
+
+       {this.state.showCars ? ( this.state.cars.map(car => {
+          return (
+            <Car
+              key={car.id}
+              name={car.name}
+              year={car.year}
+              onChangeTitle={() => this.changeTitleHandler(car.name)}
+            />
+          )
+        }) ) : null }
 
         <input type="text" onChange={this.handleInput}/>
-        <button onClick={this.changeTitleHandler.bind(this, 'change')}>Change title</button>
-
-
-        <Car 
-          name={cars[0].name} 
-          year={cars[0].year}
-          onChangeTtitle={this.changeTitleHandler.bind(this, cars[0].name)}
-        />
+        {/* <button onClick={this.changeTitleHandler.bind(this, 'change')}>Change title</button> */}
 
 
       </div>
