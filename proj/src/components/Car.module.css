@@ -1,0 +1,8 @@
+.Car {
+  display: flex;
+  flex-direction: column;
+  max-width: 260px;
+  padding: 10px;
+  border: 1px solid #000;
+  margin-bottom: 10px;
+}
