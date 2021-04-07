@@ -9,22 +9,40 @@ export default class Content extends Component {
       { name: 'Reno', year: 2016 },
       { name: 'BMW', year: 2019 },
     ],
+    pageTitle: 'Main page title'
   };
 
-  render() {
 
-    const cars = this.state;
-
-    cars.map(item, () => {
-      
+  changeTitleHandler = (newTitle) => {
+    this.setState({
+      pageTitle: newTitle
     })
+  }
+
+  handleInput = (e) => {
+    this.setState({
+      pageTitle: e.target.value
+    })
+  }
+
+  render() {
+    const { cars } = this.state;
 
     return (
       <div className={classes.Content}>
-        {this.props.children}
-        <Car />
-        <Car />
-        <Car />
+        <h1>{this.state.pageTitle}</h1>
+
+        <input type="text" onChange={this.handleInput}/>
+        <button onClick={this.changeTitleHandler.bind(this, 'change')}>Change title</button>
+
+
+        <Car 
+          name={cars[0].name} 
+          year={cars[0].year}
+          onChangeTtitle={this.changeTitleHandler.bind(this, cars[0].name)}
+        />
+
+
       </div>
     );
   }

@@ -18,9 +18,7 @@ const App = () => {
         <Route path='/characters' component={Content} />
         <Route path='/random-char' component={Content} />
 
-        <Content>
-          <h1>Main page title</h1>
-        </Content>
+        <Content />
       </div>
     </Router>
   );
