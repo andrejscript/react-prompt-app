@@ -1,0 +1,22 @@
+.Car {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: stretch;
+  max-width: 260px;
+  padding: 10px;
+  border: 1px solid #000;
+  margin: 20px auto;
+}
+
+.input {
+  margin: 10px 0;  
+}
+
+.input.green {
+  border: 1px solid green;
+}
+
+.input.red {
+  border: 1px solid red;
+}

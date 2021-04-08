@@ -1,27 +1,35 @@
-import React from 'react';
-import Header from './components/Header';
-import Sidebar from './components/Sidebar';
-import Content from './components/Content';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React, { Component } from 'react';
+import Car from './components/Car/Car';
 import './App.css';
 
-const App = () => {
-  return (
-    <Router>
-      <Header>
-        <p>Параграф переданный props.children</p>
-      </Header>
+export default class App extends Component {
 
-      <div style={{ display: 'flex' }}>
-        <Sidebar />
+  state = {
+    cars: [
+      { name: 'Mazda', year: 2014, id: 1 },
+      { name: 'Reno', year: 2016, id: 2 },
+      { name: 'BMW', year: 2019, id: 3 },
+    ],
+    pageTitle: 'Main page title',
+    showCars: true
+  };
 
-        <Route path='/characters' component={Content} />
-        <Route path='/random-char' component={Content} />
+  changeTitleHandler = () => {
+    console.log(1)
+  }
 
-        <Content />
+  render () {
+
+    const {cars} = this.state;
+
+    return (
+      <div className="App">
+        <Car name={cars[0].name} year={cars[0].year}/>
+        <Car name={cars[1].name} year={cars[1].year}/>
+        <Car name={cars[2].name} year={cars[2].year}/>
+
+        <button onClick={this.changeTitleHandler}>Change</button>
       </div>
-    </Router>
-  );
+    )
+  }
 };
-
-export default App;
