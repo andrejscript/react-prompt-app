@@ -20,7 +20,8 @@ const Car = (props) => {
         value={props.name}
         className={inputCls.join(' ')}
       />
-      <button onClick={props.onChangeTitle}>Click</button>
+      <button onClick={props.onDelete}>Delete</button>
+
     </div>
   );
 };

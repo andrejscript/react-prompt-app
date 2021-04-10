@@ -3,7 +3,6 @@ import Car from './components/Car/Car';
 import './App.css';
 
 export default class App extends Component {
-
   state = {
     cars: [
       { name: 'Mazda', year: 2014, id: 1 },
@@ -11,25 +10,55 @@ export default class App extends Component {
       { name: 'BMW', year: 2019, id: 3 },
     ],
     pageTitle: 'Main page title',
-    showCars: true
+    showCars: true,
   };
 
-  changeTitleHandler = () => {
-    console.log(1)
+  onChangeName = (name, index) => {
+    const cars = [...this.state.cars]
+    const car = cars[index];
+    car.name = name;
+    this.setState({ cars });
+  };
+  
+  handleInput = (e) => {
+    this.setState({ pageTitle: e.target.value });
+  };
+  
+  toggleListHandler = () => {
+    this.setState({ showCars: !this.state.showCars });
+  };
+
+  deleteItem(index) {
+    const cars = [...this.state.cars]
+    cars.splice(index, 1);
+    this.setState({cars});
   }
+  
+  render() {
+    const { cars, pageTitle, showCars } = this.state;
+    let list = null;
 
-  render () {
-
-    const {cars} = this.state;
+    if (showCars) {
+      list = cars.map((car, index) => {
+        return (
+          <Car
+            key={car.id}
+            name={car.name}
+            year={car.year}
+            onChangeName={e => this.onChangeName(e.target.value, index)}
+            onDelete={this.deleteItem.bind(this, index)}
+          />
+        );
+      });
+    }
 
     return (
-      <div className="App">
-        <Car name={cars[0].name} year={cars[0].year}/>
-        <Car name={cars[1].name} year={cars[1].year}/>
-        <Car name={cars[2].name} year={cars[2].year}/>
-
-        <button onClick={this.changeTitleHandler}>Change</button>
+      <div className='App'>
+        <h1>{pageTitle}</h1>
+        <button onClick={this.toggleListHandler}>Toggle list</button>
+        {list}
+        <input type='text' onChange={this.handleInput} />
       </div>
-    )
+    );
   }
-};
+}
