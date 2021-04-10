@@ -9,8 +9,11 @@
   margin: 20px auto;
 }
 
+$color: #181815;
+
 .input {
-  margin: 10px 0;  
+  margin: 10px 0; 
+  color: $color;
 }
 
 .input:active,

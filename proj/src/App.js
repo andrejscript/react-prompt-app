@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Car from './components/Car/Car';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import './App.css';
+import Counter from './components/Counter/Counter';
 
 export default class App extends Component {
   state = {
@@ -41,13 +43,15 @@ export default class App extends Component {
     if (showCars) {
       list = cars.map((car, index) => {
         return (
+          <ErrorBoundary key={car.id}>
           <Car
-            key={car.id}
+            
             name={car.name}
             year={car.year}
             onChangeName={e => this.onChangeName(e.target.value, index)}
             onDelete={this.deleteItem.bind(this, index)}
           />
+          </ErrorBoundary>
         );
       });
     }
@@ -58,6 +62,7 @@ export default class App extends Component {
         <button onClick={this.toggleListHandler}>Toggle list</button>
         {list}
         <input type='text' onChange={this.handleInput} />
+        <Counter />
       </div>
     );
   }
