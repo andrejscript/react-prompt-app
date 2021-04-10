@@ -45,7 +45,6 @@ export default class App extends Component {
         return (
           <ErrorBoundary key={car.id}>
           <Car
-            
             name={car.name}
             year={car.year}
             onChangeName={e => this.onChangeName(e.target.value, index)}

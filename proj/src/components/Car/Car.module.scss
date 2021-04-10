@@ -9,6 +9,12 @@
   margin: 20px auto;
 }
 
+.Car:hover {
+  border: 1px solid #52b0c7;
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14);
+  transition: .3s;
+}
+
 $color: #181815;
 
 .input {
