@@ -4,8 +4,11 @@ import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import './App.css';
 import Counter from './components/Counter/Counter';
 
+export const ClickedContext = React.createContext()
+
 export default class App extends Component {
   state = {
+    clicked: false,
     cars: [
       { name: 'Mazda', year: 2014, id: 1 },
       { name: 'Reno', year: 2016, id: 2 },
@@ -62,7 +65,9 @@ export default class App extends Component {
         <button onClick={this.toggleListHandler}>Toggle list</button>
         {list}
         <input type='text' onChange={this.handleInput} />
-        <Counter />
+        <Counter clicked={this.state.clicked} />
+        <hr/>
+        <button onClick={() => this.setState({clicked: !this.state.clicked})}>Change click</button>
       </div>
     );
   }
