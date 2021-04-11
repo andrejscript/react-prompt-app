@@ -1,6 +1,7 @@
 import React from 'react';
-import withClass from '../hoc/withClass';
 import classes from './Car.module.scss';
+import withClass from '../hoc/withClass';
+import PropTypes from 'prop-types';
 // import Radium from 'radium';
 
 const Car = props => {
@@ -27,6 +28,19 @@ const Car = props => {
     </>
   );
 };
+
+
+Car.defaultProps = {
+  name: 'auto'
+};
+
+
+Car.propTypes = {
+  name: PropTypes.string,
+  year: PropTypes.number,
+  onChangeName: PropTypes.func,
+  onDelete: PropTypes.func
+}
 
 // export default Radium(Car);
 export default withClass(Car, classes.Car);
