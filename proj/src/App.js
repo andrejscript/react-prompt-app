@@ -47,6 +47,7 @@ export default class App extends Component {
           <Car
             name={car.name}
             year={car.year}
+            index={index}
             onChangeName={e => this.onChangeName(e.target.value, index)}
             onDelete={this.deleteItem.bind(this, index)}
           />
