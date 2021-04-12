@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import Car from './components/Car/Car';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
-import './App.css';
 import Counter from './components/Counter/Counter';
+import WrapperContext from './components/WrapperContext/WrapperContext';
+import MyContext from './components/WrapperContext/Context';
+import Car from './components/Car/Car';
+import './App.css';
 
 export const ClickedContext = React.createContext(false);
 
@@ -70,6 +72,12 @@ export default class App extends Component {
         <button onClick={() => this.setState({ clicked: !this.state.clicked })}>
           Change click
         </button>
+        <MyContext.Provider value={{
+          name: 'Johny',
+          age: 35,
+        }}>
+          <WrapperContext />
+        </MyContext.Provider>
       </div>
     );
   }
