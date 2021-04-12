@@ -4,7 +4,7 @@ import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import './App.css';
 import Counter from './components/Counter/Counter';
 
-export const ClickedContext = React.createContext()
+export const ClickedContext = React.createContext(false);
 
 export default class App extends Component {
   state = {
@@ -19,26 +19,26 @@ export default class App extends Component {
   };
 
   onChangeName = (name, index) => {
-    const cars = [...this.state.cars]
+    const cars = [...this.state.cars];
     const car = cars[index];
     car.name = name;
     this.setState({ cars });
   };
-  
+
   handleInput = (e) => {
     this.setState({ pageTitle: e.target.value });
   };
-  
+
   toggleListHandler = () => {
     this.setState({ showCars: !this.state.showCars });
   };
 
   deleteItem(index) {
-    const cars = [...this.state.cars]
+    const cars = [...this.state.cars];
     cars.splice(index, 1);
-    this.setState({cars});
+    this.setState({ cars });
   }
-  
+
   render() {
     const { cars, pageTitle, showCars } = this.state;
     let list = null;
@@ -47,13 +47,13 @@ export default class App extends Component {
       list = cars.map((car, index) => {
         return (
           <ErrorBoundary key={car.id}>
-          <Car
-            name={car.name}
-            year={car.year}
-            index={index}
-            onChangeName={e => this.onChangeName(e.target.value, index)}
-            onDelete={this.deleteItem.bind(this, index)}
-          />
+            <Car
+              name={car.name}
+              year={car.year}
+              index={index}
+              onChangeName={(e) => this.onChangeName(e.target.value, index)}
+              onDelete={this.deleteItem.bind(this, index)}
+            />
           </ErrorBoundary>
         );
       });
@@ -66,8 +66,10 @@ export default class App extends Component {
         {list}
         <input type='text' onChange={this.handleInput} />
         <Counter clicked={this.state.clicked} />
-        <hr/>
-        <button onClick={() => this.setState({clicked: !this.state.clicked})}>Change click</button>
+        <hr />
+        <button onClick={() => this.setState({ clicked: !this.state.clicked })}>
+          Change click
+        </button>
       </div>
     );
   }
