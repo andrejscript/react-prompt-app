@@ -73,8 +73,8 @@ export default class App extends Component {
           Change click
         </button>
         <MyContext.Provider value={{
-          name: 'Johny',
-          age: 35,
+          name: 'John',
+          age: 57
         }}>
           <WrapperContext />
         </MyContext.Provider>
