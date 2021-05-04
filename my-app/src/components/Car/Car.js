@@ -5,6 +5,10 @@ import PropTypes from 'prop-types';
 // import Radium from 'radium';
 
 class Car extends React.Component {
+  constructor() {
+    super();
+    this.nameField = React.createRef();
+  }
   componentDidMount() {
     if (this.props.index === 2) {
       this.inputRef.focus();
@@ -18,11 +22,11 @@ class Car extends React.Component {
       inputCls.push(classes.green);
     } else {
       inputCls.push(classes.red);
-    }
+    }    
 
     return (
       <>
-        <h3>{this.props.name}</h3>
+        <h3 ref={this.nameField}>{this.props.name}</h3>
         <p>{this.props.year}</p>
         <input
           ref={(inputRef) => (this.inputRef = inputRef)}
